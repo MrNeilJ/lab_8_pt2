@@ -1,3 +1,13 @@
+/**************************************************************
+ * Author: Neil Johnson
+ *
+ * Date: 4.26.2017
+ *
+ * Description: This is the main function for the application
+ * where we are able to search / sort through a set of numbers
+ * that come from an external file(s).
+**************************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -62,9 +72,13 @@ int main() {
 
 		// If the user selected to just do the Sort function
 		else if (searchResponse == 2 || searchResponse == 3) {
-			// Ask the user if they would like to save the results to a file
-			std::cout << "Would you like to save the results to some file? (Y/N)";
-			char saveChoice = tolower(getCharacter());
+			char saveChoice = 'N';
+
+			if (searchResponse == 3) {
+				// Ask the user if they would like to save the results to a file
+				std::cout << "Would you like to save the results to some file? (Y/N)";
+				saveChoice = tolower(getCharacter());
+			}
 
 			std::vector<int> currVec;
 			for (int i = 0; i < 4; i++) {
@@ -74,7 +88,7 @@ int main() {
 				// Sort the information within the vector.
 				quickSort(currVec, 0, (currVec.size()-1));
 
-				if (saveChoice == 'y') {
+				if (toupper(saveChoice) == 'Y') {
 					std::cout << "What would you like the saved file name to be?: " << std::endl;
 					std::string saveName = getString();
 					saveSort(currVec, saveName);
@@ -82,7 +96,7 @@ int main() {
 				}
 				else {
 					// Print the results so the user can see
-					std::cout << fileSets[i] << "list:" << std::endl;
+					std::cout << fileSets[i] << " list:" << std::endl;
 					displayresults(currVec);
 
 					std::cout << std::endl;
@@ -105,7 +119,7 @@ int main() {
 					found = binarySearch(currVec, numSearch, 0, (currVec.size()-1));
 
 					// Print out the results to the console
-					std::cout << fileSets[i] << ": target value " << "\"" << numSearch << "\"";
+					std::cout << updatedFileSets[i] << ": target value " << "\"" << numSearch << "\"";
 					if (found) {
 						std::cout << " found." << std::endl;
 					}
