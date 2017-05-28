@@ -40,7 +40,7 @@ int main() {
 						 "Binary Search (utilizing Quick Sort method)",
 						 "Quit");
 
-	int searchResponse = -1;
+	int searchResponse;
 	bool found;
 	int numSearch;
 
@@ -72,12 +72,12 @@ int main() {
 
 		// If the user selected to just do the Sort function
 		else if (searchResponse == 2 || searchResponse == 3) {
-			char saveChoice = 'N';
-
-			if (searchResponse == 3) {
-				// Ask the user if they would like to save the results to a file
-				std::cout << "Would you like to save the results to some file? (Y/N)";
-				saveChoice = tolower(getCharacter());
+			char saveChoice;
+			if (searchResponse == 2) {
+				saveChoice = 'N';
+			}
+			else {
+				saveChoice = 'Y';
 			}
 
 			std::vector<int> currVec;
@@ -93,6 +93,7 @@ int main() {
 					std::string saveName = getString();
 					saveSort(currVec, saveName);
 					updatedFileSets[i] = saveName;
+					std::cout << "Successfully saved to " << updatedFileSets[i] << "." << std::endl;
 				}
 				else {
 					// Print the results so the user can see
