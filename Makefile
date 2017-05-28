@@ -14,4 +14,4 @@ inputCheck.o: inputCheck.cpp inputCheck.hpp
 	g++ -std=c++11 -c inputCheck.cpp
 
 clean:
-	rm *.o output *.txt !("controlSet.txt"|"set1.txt"|"set2.txt"|"set3.txt")
+	rm *.o output
